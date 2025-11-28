@@ -7,6 +7,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  role: 'admin' | 'user';
 }
 
 export interface AuthResponse {
@@ -35,15 +36,31 @@ export const api = {
     login: async (email: string, password: string): Promise<AuthResponse> => {
       // Simulate network delay
       await new Promise(resolve => setTimeout(resolve, 500));
+
+      if (email === 'admin@gmail.com' && password === 'admin1234') {
+        return {
+          user: { id: 'admin-1', name: 'Admin User', email, role: 'admin' },
+          token: 'mock-admin-token'
+        };
+      }
+
+      if (email === 'user@gmail.com' && password === 'user1234') {
+        return {
+          user: { id: 'user-1', name: 'Regular User', email, role: 'user' },
+          token: 'mock-user-token'
+        };
+      }
+
+      // Default for other credentials (treated as user)
       return {
-        user: { id: '1', name: 'Demo User', email },
+        user: { id: '1', name: 'Demo User', email, role: 'user' },
         token: 'mock-jwt-token'
       };
     },
     register: async (name: string, email: string, password: string): Promise<AuthResponse> => {
       await new Promise(resolve => setTimeout(resolve, 500));
       return {
-        user: { id: '1', name, email },
+        user: { id: '1', name, email, role: 'user' },
         token: 'mock-jwt-token'
       };
     },

@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { playSound } from "@/lib/sounds";
 
 type TimerMode = "focus" | "shortBreak" | "longBreak";
 
@@ -76,8 +77,7 @@ export default function PomodoroPage() {
       setIsActive(false);
       if (timerRef.current) clearInterval(timerRef.current);
       if (soundEnabled) {
-        // Play sound (simulated)
-        console.log("Beep!");
+        playSound('success');
       }
       // If focusing on a task, increment actual pomodoros
       if (mode === 'focus' && activeTaskId) {

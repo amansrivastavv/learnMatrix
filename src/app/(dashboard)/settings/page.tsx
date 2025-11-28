@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,6 +32,21 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(false);
   const [notifications, setNotifications] = useState(true);
   const [marketing, setMarketing] = useState(false);
+
+  useEffect(() => {
+    const savedNotifications = localStorage.getItem("settings-notifications");
+    const savedMarketing = localStorage.getItem("settings-marketing");
+    if (savedNotifications !== null) setNotifications(JSON.parse(savedNotifications));
+    if (savedMarketing !== null) setMarketing(JSON.parse(savedMarketing));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("settings-notifications", JSON.stringify(notifications));
+  }, [notifications]);
+
+  useEffect(() => {
+    localStorage.setItem("settings-marketing", JSON.stringify(marketing));
+  }, [marketing]);
 
   const handleSave = () => {
     setLoading(true);

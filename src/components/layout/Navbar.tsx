@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogOut, User } from "lucide-react";
 
+import { CommandMenu } from "@/components/CommandMenu";
+
 export default function Navbar() {
   const { user, logout } = useAuth();
 
@@ -24,6 +26,7 @@ export default function Navbar() {
         <h1 className="text-xl font-bold md:hidden">LearnMatrix</h1>
       </div>
       <div className="flex items-center gap-4">
+        <CommandMenu />
         <ThemeToggle />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

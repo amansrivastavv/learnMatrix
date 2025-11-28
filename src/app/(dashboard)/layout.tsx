@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { Onboarding } from "@/components/Onboarding";
 
 const DashboardLayout = ({
   children
@@ -13,6 +14,7 @@ const DashboardLayout = ({
       </div>
       <main className="md:pl-72 min-h-screen bg-background">
         <Navbar />
+        <Onboarding />
         <div className="p-4 md:p-8">
           {children}
         </div>

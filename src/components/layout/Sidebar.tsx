@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, BookOpen, CheckSquare, BarChart2, BrainCircuit, LogOut, Settings, Zap } from "lucide-react";
+import { LayoutDashboard, BookOpen, CheckSquare, BarChart2, BrainCircuit, LogOut, Settings, Zap, Trophy, User, Timer } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 
@@ -43,6 +43,30 @@ const routes = [
     icon: BookOpen,
     href: "/resources",
     color: "text-yellow-500",
+  },
+  {
+    label: "Focus Timer",
+    icon: Timer,
+    href: "/pomodoro",
+    color: "text-red-500",
+  },
+  {
+    label: "Kanban",
+    icon: LayoutDashboard,
+    href: "/kanban",
+    color: "text-indigo-500",
+  },
+  {
+    label: "Leaderboard",
+    icon: Trophy,
+    href: "/leaderboard",
+    color: "text-yellow-600",
+  },
+  {
+    label: "Profile",
+    icon: User,
+    href: "/profile",
+    color: "text-cyan-500",
   },
   {
     label: "Settings",

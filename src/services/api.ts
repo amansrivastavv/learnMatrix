@@ -33,20 +33,19 @@ const handleResponse = async (response: Response) => {
 export const api = {
   auth: {
     login: async (email: string, password: string): Promise<AuthResponse> => {
-      const response = await fetch(`${API_BASE}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      return handleResponse(response);
+      // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+      return {
+        user: { id: '1', name: 'Demo User', email },
+        token: 'mock-jwt-token'
+      };
     },
     register: async (name: string, email: string, password: string): Promise<AuthResponse> => {
-      const response = await fetch(`${API_BASE}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
-      });
-      return handleResponse(response);
+      await new Promise(resolve => setTimeout(resolve, 500));
+      return {
+        user: { id: '1', name, email },
+        token: 'mock-jwt-token'
+      };
     },
     logout: async () => {
       localStorage.removeItem('token');
@@ -54,73 +53,68 @@ export const api = {
   },
   dashboard: {
     getStats: async () => {
-      const response = await fetch(`${API_BASE}/stats`, { headers: getHeaders() });
-      return handleResponse(response);
+      // Return mock stats immediately
+      return {
+        streak: 12,
+        totalHours: 48.5,
+        questionsSolved: 142,
+        topicsCovered: 8
+      };
     },
     getRecentActivity: async () => {
-      // Mocking this for now as backend might not have this exact endpoint ready or populated
       return [
         { id: 1, type: 'practice', title: 'Solved "Two Sum"', date: new Date().toISOString() },
+        { id: 2, type: 'daily', title: 'Learned React Hooks', date: new Date(Date.now() - 86400000).toISOString() },
+        { id: 3, type: 'resource', title: 'Added "Next.js Docs"', date: new Date(Date.now() - 172800000).toISOString() },
       ];
     }
   },
   daily: {
     create: async (data: any) => {
-      const response = await fetch(`${API_BASE}/daily`, {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify(data),
-      });
-      return handleResponse(response);
+      await new Promise(resolve => setTimeout(resolve, 500));
+      return { id: Math.random().toString(), ...data };
     },
     list: async () => {
-      const response = await fetch(`${API_BASE}/daily`, { headers: getHeaders() });
-      return handleResponse(response);
+      return [];
     }
   },
   practice: {
     list: async () => {
-      const response = await fetch(`${API_BASE}/practice`, { headers: getHeaders() });
-      return handleResponse(response);
+      return [
+        { id: '1', title: 'Two Sum', difficulty: 'Easy', status: 'Solved', topic: 'Array' },
+        { id: '2', title: 'Reverse Linked List', difficulty: 'Medium', status: 'Pending', topic: 'LinkedList' },
+      ];
     },
     add: async (data: any) => {
-      const response = await fetch(`${API_BASE}/practice`, {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify(data),
-      });
-      return handleResponse(response);
+      await new Promise(resolve => setTimeout(resolve, 500));
+      return { id: Math.random().toString(), ...data };
     },
     toggleStatus: async (id: string) => {
-      const response = await fetch(`${API_BASE}/practice/${id}/toggle`, {
-        method: 'POST',
-        headers: getHeaders(),
-      });
-      return handleResponse(response);
+      return { success: true };
     }
   },
   progress: {
     getData: async () => {
-      // Using stats endpoint for now as it contains similar data, or mock if specific structure needed
-      // The backend stats endpoint returns streak, monthlySummary, graphData
-      const response = await fetch(`${API_BASE}/stats`, { headers: getHeaders() });
-      const data = await handleResponse(response);
-      
-      // Transform backend data to match frontend expectation if needed
       return {
-        studyHours: data.graphData || [0, 0, 0, 0, 0, 0, 0],
-        topicsDistribution: { 'General': 100 } // Placeholder until backend supports this
+        studyHours: [2, 4.5, 3, 6, 4, 5.5, 3],
+        topicsDistribution: { 
+          'Frontend': 40, 
+          'Backend': 30, 
+          'DSA': 20, 
+          'DevOps': 10 
+        }
       };
     }
   },
   ai: {
     generateRoadmap: async (field: string, duration: number, dailyTime: number) => {
-      const response = await fetch(`${API_BASE}/ai/roadmap`, {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify({ field, duration, dailyTime }),
-      });
-      return handleResponse(response);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      return {
+        roadmap: [
+          { week: 1, topic: "Basics", description: "Learn the fundamentals." },
+          { week: 2, topic: "Advanced", description: "Deep dive into complex topics." }
+        ]
+      };
     }
   }
 };

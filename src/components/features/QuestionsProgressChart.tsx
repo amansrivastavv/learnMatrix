@@ -30,9 +30,10 @@ export default function QuestionsProgressChart() {
       {
         label: "Questions Solved",
         data: [2, 5, 3, 8, 6, 4, 7],
-        borderColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgba(75, 192, 192, 0.5)",
-        tension: 0.3,
+        borderColor: "#8b5cf6",
+        backgroundColor: "rgba(139, 92, 246, 0.2)",
+        tension: 0.4,
+        fill: true,
       },
     ],
   };

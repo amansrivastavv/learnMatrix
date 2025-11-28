@@ -33,11 +33,12 @@ export function TopicsDistributionChart({ data }: TopicsDistributionChartProps) 
         label: 'Questions Solved',
         data: Object.values(data),
         backgroundColor: [
-          'rgba(255, 99, 132, 0.7)',
-          'rgba(54, 162, 235, 0.7)',
-          'rgba(255, 206, 86, 0.7)',
-          'rgba(75, 192, 192, 0.7)',
+          'rgba(139, 92, 246, 0.8)', // Violet
+          'rgba(14, 165, 233, 0.8)', // Sky
+          'rgba(244, 63, 94, 0.8)',  // Rose
+          'rgba(234, 179, 8, 0.8)',  // Yellow
         ],
+        borderRadius: 4,
       },
     ],
   };

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Loader } from "@/components/ui/loader";
 import { StudyHoursChart } from "@/components/features/StudyHoursChart";
 import { TopicsDistributionChart } from "@/components/features/TopicsDistributionChart";
 
@@ -24,10 +25,10 @@ export default function ProgressPage() {
     loadData();
   }, []);
 
-  if (loading) return <div className="p-8">Loading charts...</div>;
+  if (loading) return <Loader variant="fullscreen" />;
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-8 space-y-8 animate-fade-in-up">
       <h2 className="text-3xl font-bold tracking-tight">Learning Progress</h2>
       
       <div className="grid gap-4 md:grid-cols-2">

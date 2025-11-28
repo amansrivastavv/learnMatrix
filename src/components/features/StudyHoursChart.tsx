@@ -34,9 +34,10 @@ export function StudyHoursChart({ data }: StudyHoursChartProps) {
       {
         label: 'Study Hours',
         data: data,
-        borderColor: 'rgb(99, 102, 241)',
-        backgroundColor: 'rgba(99, 102, 241, 0.5)',
-        tension: 0.3,
+        borderColor: '#8b5cf6', // Violet-500
+        backgroundColor: 'rgba(139, 92, 246, 0.2)', // Violet-500 with opacity
+        tension: 0.4,
+        fill: true,
       },
     ],
   };

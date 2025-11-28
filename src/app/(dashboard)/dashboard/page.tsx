@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Loader } from "@/components/ui/loader";
 import { Activity, Clock, Flame, BookOpen, ArrowUpRight } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 import { StudyHoursChart } from "@/components/features/StudyHoursChart";
@@ -38,14 +39,7 @@ export default function DashboardPage() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-[calc(100vh-100px)]">
-        <div className="animate-pulse flex flex-col items-center gap-4">
-          <div className="h-12 w-12 rounded-full bg-muted"></div>
-          <div className="h-4 w-32 rounded bg-muted"></div>
-        </div>
-      </div>
-    );
+    return <Loader variant="fullscreen" />;
   }
 
   return (
@@ -136,7 +130,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4 hover:shadow-md transition-shadow">
+        <Card className="col-span-1 md:col-span-2 lg:col-span-4 hover:shadow-md transition-shadow">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
             <CardDescription>Your latest actions</CardDescription>
@@ -163,7 +157,7 @@ export default function DashboardPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="col-span-3 hover:shadow-md transition-shadow">
+        <Card className="col-span-1 md:col-span-2 lg:col-span-3 hover:shadow-md transition-shadow">
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
             <CardDescription>Common tasks</CardDescription>

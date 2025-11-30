@@ -1,0 +1,1 @@
+﻿src/app/(admin)/admin/settings/page.tsx(5,24): error TS2307: Cannot find module '@/components/ui/switch' or its corresponding type declarations.
